@@ -4,17 +4,38 @@
  */
 package Views;
 
+import Controllers.PersonaController;
+import Controllers.RolController;
+import Models.Persona;
+import Models.Rol;
+import java.math.BigInteger;
+import java.util.Date;
+import com.toedter.calendar.JDateChooser;
+import java.util.List;
+
 /**
  *
  * @author Hader
  */
 public class Personas extends javax.swing.JFrame {
 
+    private String Nombre, Apellidos, Correo, Pais, Profesion;
+    private BigInteger Rol;
+    private Date fechaNacimiento;
+
     /**
      * Creates new form Personas
      */
     public Personas() {
         initComponents();
+
+        RolController rolControl = new RolController();
+
+        List<Rol> listaRoles = rolControl.obtenerRoles();
+
+        for (Rol rol : listaRoles) {
+            cbRol.addItem(rol.getNombre());
+        }
     }
 
     /**
@@ -31,251 +52,342 @@ public class Personas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+        // Code">//GEN-BEGIN:initComponents
+        private void initComponents() {
 
-        lblTitulo = new javax.swing.JLabel();
-        pDatosBasicos = new javax.swing.JPanel();
-        lblNombre = new javax.swing.JLabel();
-        lblApellidos = new javax.swing.JLabel();
-        lblCorreo = new javax.swing.JLabel();
-        lblFechaNacimiento = new javax.swing.JLabel();
-        lblPais = new javax.swing.JLabel();
-        lblProfesion = new javax.swing.JLabel();
-        lblRol = new javax.swing.JLabel();
-        lblBuscarPersona = new javax.swing.JLabel();
-        tfNombre = new javax.swing.JTextField();
-        tfApellidos = new javax.swing.JTextField();
-        tfCorreo = new javax.swing.JTextField();
-        dcFechaNacimiento = new com.toedter.calendar.JDateChooser();
-        tfPais = new javax.swing.JTextField();
-        tfProfesion = new javax.swing.JTextField();
-        cbRol = new javax.swing.JComboBox<>();
-        tfBuscarPersona = new javax.swing.JTextField();
-        pBotones = new javax.swing.JPanel();
-        btnRegistrar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
-        btnBorrar = new javax.swing.JButton();
-        btnConsultar = new javax.swing.JButton();
+                lblTitulo = new javax.swing.JLabel();
+                pDatosBasicos = new javax.swing.JPanel();
+                lblNombre = new javax.swing.JLabel();
+                lblApellidos = new javax.swing.JLabel();
+                lblCorreo = new javax.swing.JLabel();
+                lblFechaNacimiento = new javax.swing.JLabel();
+                lblPais = new javax.swing.JLabel();
+                lblProfesion = new javax.swing.JLabel();
+                lblRol = new javax.swing.JLabel();
+                lblBuscarPersona = new javax.swing.JLabel();
+                tfNombre = new javax.swing.JTextField();
+                tfApellidos = new javax.swing.JTextField();
+                tfCorreo = new javax.swing.JTextField();
+                dcFechaNacimiento = new com.toedter.calendar.JDateChooser();
+                tfPais = new javax.swing.JTextField();
+                tfProfesion = new javax.swing.JTextField();
+                cbRol = new javax.swing.JComboBox<>();
+                tfBuscarPersona = new javax.swing.JTextField();
+                pBotones = new javax.swing.JPanel();
+                btnRegistrar = new javax.swing.JButton();
+                btnEditar = new javax.swing.JButton();
+                btnBorrar = new javax.swing.JButton();
+                btnConsultar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
+                setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                setAlwaysOnTop(true);
 
-        lblTitulo.setText("CRUD CON JAVA-MVC");
+                lblTitulo.setText("CRUD CON JAVA-MVC");
 
-        pDatosBasicos.setToolTipText("Datos de la Persona");
-        pDatosBasicos.setName(""); // NOI18N
+                pDatosBasicos.setToolTipText("Datos de la Persona");
+                pDatosBasicos.setName(""); // NOI18N
 
-        lblNombre.setText("Nombre");
+                lblNombre.setText("Nombre");
 
-        lblApellidos.setText("Apellidos");
+                lblApellidos.setText("Apellidos");
 
-        lblCorreo.setText("Correo");
+                lblCorreo.setText("Correo");
 
-        lblFechaNacimiento.setText("Fecha de Nacimiento");
+                lblFechaNacimiento.setText("Fecha de Nacimiento");
 
-        lblPais.setText("País");
+                lblPais.setText("País");
 
-        lblProfesion.setText("Profesión");
+                lblProfesion.setText("Profesión");
 
-        lblRol.setText("Rol");
+                lblRol.setText("Rol");
 
-        lblBuscarPersona.setText("Buscar Persona");
+                lblBuscarPersona.setText("Buscar Persona");
 
-        javax.swing.GroupLayout pDatosBasicosLayout = new javax.swing.GroupLayout(pDatosBasicos);
-        pDatosBasicos.setLayout(pDatosBasicosLayout);
-        pDatosBasicosLayout.setHorizontalGroup(
-                pDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pDatosBasicosLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(pDatosBasicosLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lblBuscarPersona, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblProfesion, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblPais, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblFechaNacimiento, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                                        .addComponent(lblCorreo, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblApellidos, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblRol, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(pDatosBasicosLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tfNombre)
-                                        .addComponent(tfApellidos)
-                                        .addComponent(tfCorreo)
-                                        .addComponent(tfPais)
-                                        .addComponent(tfProfesion)
-                                        .addComponent(cbRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tfBuscarPersona))
-                                .addContainerGap()));
-        pDatosBasicosLayout.setVerticalGroup(
-                pDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pDatosBasicosLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(pDatosBasicosLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pDatosBasicosLayout
-                                                .createSequentialGroup()
-                                                .addGroup(pDatosBasicosLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(lblNombre)
-                                                        .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(pDatosBasicosLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(lblApellidos)
-                                                        .addComponent(tfApellidos,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(lblCorreo))
-                                        .addComponent(tfCorreo, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(pDatosBasicosLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblFechaNacimiento)
-                                        .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(pDatosBasicosLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lblPais)
-                                        .addComponent(tfPais, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(pDatosBasicosLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lblProfesion)
-                                        .addComponent(tfProfesion, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(pDatosBasicosLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lblRol)
-                                        .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(pDatosBasicosLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblBuscarPersona)
-                                        .addComponent(tfBuscarPersona, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(84, 84, 84)));
+                javax.swing.GroupLayout pDatosBasicosLayout = new javax.swing.GroupLayout(pDatosBasicos);
+                pDatosBasicos.setLayout(pDatosBasicosLayout);
+                pDatosBasicosLayout.setHorizontalGroup(
+                                pDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(pDatosBasicosLayout.createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addGroup(pDatosBasicosLayout
+                                                                                .createParallelGroup(
+                                                                                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                                false)
+                                                                                .addComponent(lblBuscarPersona,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE)
+                                                                                .addComponent(lblProfesion,
+                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE)
+                                                                                .addComponent(lblPais,
+                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE)
+                                                                                .addComponent(lblFechaNacimiento,
+                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                142, Short.MAX_VALUE)
+                                                                                .addComponent(lblCorreo,
+                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE)
+                                                                                .addComponent(lblApellidos,
+                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE)
+                                                                                .addComponent(lblNombre,
+                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE)
+                                                                                .addComponent(lblRol,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE))
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(pDatosBasicosLayout
+                                                                                .createParallelGroup(
+                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(tfNombre)
+                                                                                .addComponent(tfApellidos)
+                                                                                .addComponent(tfCorreo)
+                                                                                .addComponent(tfPais)
+                                                                                .addComponent(tfProfesion)
+                                                                                .addComponent(cbRol, 0,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE)
+                                                                                .addComponent(dcFechaNacimiento,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE)
+                                                                                .addComponent(tfBuscarPersona))
+                                                                .addContainerGap()));
+                pDatosBasicosLayout.setVerticalGroup(
+                                pDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(pDatosBasicosLayout.createSequentialGroup()
+                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
+                                                                .addGroup(pDatosBasicosLayout
+                                                                                .createParallelGroup(
+                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                                pDatosBasicosLayout
+                                                                                                                .createSequentialGroup()
+                                                                                                                .addGroup(pDatosBasicosLayout
+                                                                                                                                .createParallelGroup(
+                                                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                                                .addComponent(lblNombre)
+                                                                                                                                .addComponent(tfNombre,
+                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                                .addGap(18, 18, 18)
+                                                                                                                .addGroup(pDatosBasicosLayout
+                                                                                                                                .createParallelGroup(
+                                                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                                                .addComponent(lblApellidos)
+                                                                                                                                .addComponent(tfApellidos,
+                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                                                .addGap(18, 18, 18)
+                                                                                                                .addComponent(lblCorreo))
+                                                                                .addComponent(tfCorreo,
+                                                                                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(pDatosBasicosLayout
+                                                                                .createParallelGroup(
+                                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                                .addComponent(lblFechaNacimiento)
+                                                                                .addComponent(dcFechaNacimiento,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(pDatosBasicosLayout
+                                                                                .createParallelGroup(
+                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                .addComponent(lblPais)
+                                                                                .addComponent(tfPais,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(pDatosBasicosLayout
+                                                                                .createParallelGroup(
+                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                .addComponent(lblProfesion)
+                                                                                .addComponent(tfProfesion,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(pDatosBasicosLayout
+                                                                                .createParallelGroup(
+                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                .addComponent(lblRol)
+                                                                                .addComponent(cbRol,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(pDatosBasicosLayout
+                                                                                .createParallelGroup(
+                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(lblBuscarPersona)
+                                                                                .addComponent(tfBuscarPersona,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(84, 84, 84)));
 
-        btnRegistrar.setText("Registrar");
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
-            }
-        });
+                btnRegistrar.setText("Registrar");
+                btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnRegistrarActionPerformed(evt);
+                        }
+                });
 
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
+                btnEditar.setText("Editar");
+                btnEditar.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnEditarActionPerformed(evt);
+                        }
+                });
 
-        btnBorrar.setText("Borrar");
-        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarActionPerformed(evt);
-            }
-        });
+                btnBorrar.setText("Borrar");
+                btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnBorrarActionPerformed(evt);
+                        }
+                });
 
-        btnConsultar.setText("Consultar");
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
-            }
-        });
+                btnConsultar.setText("Consultar");
+                btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnConsultarActionPerformed(evt);
+                        }
+                });
 
-        javax.swing.GroupLayout pBotonesLayout = new javax.swing.GroupLayout(pBotones);
-        pBotones.setLayout(pBotonesLayout);
-        pBotonesLayout.setHorizontalGroup(
-                pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pBotonesLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnRegistrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBorrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnConsultar)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-        pBotonesLayout.setVerticalGroup(
-                pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pBotonesLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnRegistrar)
-                                        .addComponent(btnEditar)
-                                        .addComponent(btnBorrar)
-                                        .addComponent(btnConsultar))
-                                .addContainerGap(12, Short.MAX_VALUE)));
+                javax.swing.GroupLayout pBotonesLayout = new javax.swing.GroupLayout(pBotones);
+                pBotones.setLayout(pBotonesLayout);
+                pBotonesLayout.setHorizontalGroup(
+                                pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pBotonesLayout
+                                                                .createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addComponent(btnRegistrar)
+                                                                .addPreferredGap(
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(btnEditar)
+                                                                .addPreferredGap(
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(btnBorrar)
+                                                                .addPreferredGap(
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(btnConsultar)
+                                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)));
+                pBotonesLayout.setVerticalGroup(
+                                pBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(pBotonesLayout.createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addGroup(pBotonesLayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                .addComponent(btnRegistrar)
+                                                                                .addComponent(btnEditar)
+                                                                                .addComponent(btnBorrar)
+                                                                                .addComponent(btnConsultar))
+                                                                .addContainerGap(12, Short.MAX_VALUE)));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(pDatosBasicos, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                .addGap(111, 111, 111))
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap()));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pDatosBasicos, javax.swing.GroupLayout.PREFERRED_SIZE, 306,
-                                        Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(pBotones, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap()));
+                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+                getContentPane().setLayout(layout);
+                layout.setHorizontalGroup(
+                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(pDatosBasicos, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                                .addGap(133, 133, 133)
+                                                                .addComponent(lblTitulo,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                124, Short.MAX_VALUE)
+                                                                .addGap(111, 111, 111))
+                                                .addGroup(layout.createSequentialGroup()
+                                                                .addGap(7, 7, 7)
+                                                                .addComponent(pBotones,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
+                                                                .addContainerGap()));
+                layout.setVerticalGroup(
+                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addComponent(lblTitulo,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                42, Short.MAX_VALUE)
+                                                                .addPreferredGap(
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(pDatosBasicos,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                306,
+                                                                                Short.MAX_VALUE)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(pBotones,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
+                                                                .addContainerGap()));
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+                pack();
+        }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_btnRegistrarActionPerformed
+        Nombre = tfNombre.getText();
+        Apellidos = tfApellidos.getText();
+        Correo = tfCorreo.getText();
+        Pais = tfPais.getText();
+        Profesion = tfProfesion.getText();
+        fechaNacimiento = dcFechaNacimiento.getDate();
+
+        Persona registrarPersona = new Persona();
+        PersonaController nuevaPersona = new PersonaController();
+
+        switch (cbRol.getSelectedIndex()) {
+            case 0 ->
+                Rol = new BigInteger("1");
+            case 1 ->
+                Rol = new BigInteger("2");
+            case 2 ->
+                Rol = new BigInteger("3");
+            case 3 ->
+                Rol = new BigInteger("4");
+            case 4 ->
+                Rol = new BigInteger("5");
+            default ->
+                Rol = new BigInteger("2");
+        }
+
+        registrarPersona.setNombre(Nombre);
+        registrarPersona.setApellidos(Apellidos);
+        registrarPersona.setCorreo(Correo);
+        registrarPersona.setPais(Pais);
+        registrarPersona.setProfesion(Profesion);
+        registrarPersona.setRol(Rol);
+        registrarPersona.setFechaNacimiento(fechaNacimiento);
+
+        nuevaPersona.creacion(registrarPersona);
+
+    }
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
@@ -297,13 +409,14 @@ public class Personas extends javax.swing.JFrame {
         // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
         // (optional) ">
         /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-         * look and feel.
-         * For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+                 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+                 * look and feel.
+                 * For details see
+                 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+                    .getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
@@ -311,7 +424,8 @@ public class Personas extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
                 | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Personas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Personas.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         }
         // </editor-fold>
 
@@ -323,29 +437,29 @@ public class Personas extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBorrar;
-    private javax.swing.JButton btnConsultar;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> cbRol;
-    private com.toedter.calendar.JDateChooser dcFechaNacimiento;
-    private javax.swing.JLabel lblApellidos;
-    private javax.swing.JLabel lblBuscarPersona;
-    private javax.swing.JLabel lblCorreo;
-    private javax.swing.JLabel lblFechaNacimiento;
-    private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblPais;
-    private javax.swing.JLabel lblProfesion;
-    private javax.swing.JLabel lblRol;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JPanel pBotones;
-    private javax.swing.JPanel pDatosBasicos;
-    private javax.swing.JTextField tfApellidos;
-    private javax.swing.JTextField tfBuscarPersona;
-    private javax.swing.JTextField tfCorreo;
-    private javax.swing.JTextField tfNombre;
-    private javax.swing.JTextField tfPais;
-    private javax.swing.JTextField tfProfesion;
-    // End of variables declaration//GEN-END:variables
+        // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JButton btnBorrar;
+        private javax.swing.JButton btnConsultar;
+        private javax.swing.JButton btnEditar;
+        private javax.swing.JButton btnRegistrar;
+        private javax.swing.JComboBox<String> cbRol;
+        private com.toedter.calendar.JDateChooser dcFechaNacimiento;
+        private javax.swing.JLabel lblApellidos;
+        private javax.swing.JLabel lblBuscarPersona;
+        private javax.swing.JLabel lblCorreo;
+        private javax.swing.JLabel lblFechaNacimiento;
+        private javax.swing.JLabel lblNombre;
+        private javax.swing.JLabel lblPais;
+        private javax.swing.JLabel lblProfesion;
+        private javax.swing.JLabel lblRol;
+        private javax.swing.JLabel lblTitulo;
+        private javax.swing.JPanel pBotones;
+        private javax.swing.JPanel pDatosBasicos;
+        private javax.swing.JTextField tfApellidos;
+        private javax.swing.JTextField tfBuscarPersona;
+        private javax.swing.JTextField tfCorreo;
+        private javax.swing.JTextField tfNombre;
+        private javax.swing.JTextField tfPais;
+        private javax.swing.JTextField tfProfesion;
+        // End of variables declaration//GEN-END:variables
 }
