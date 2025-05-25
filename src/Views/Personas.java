@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.Calendar;
+import Utils.UIUtils;
 
 /**
  *
@@ -300,77 +301,59 @@ public class Personas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mostrarMensajeRegistro(String mensaje, String titulo, int tipoMensaje) {
+        JOptionPane.showMessageDialog(this,
+                mensaje,
+                titulo,
+                tipoMensaje);
+    }
+
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            // Validar campos vacíos
-            if (tfNombre.getText().trim().isEmpty()
-                    || tfApellidos.getText().trim().isEmpty()
-                    || tfCorreo.getText().trim().isEmpty()
-                    || tfPais.getText().trim().isEmpty()
-                    || tfProfesion.getText().trim().isEmpty()
-                    || dcFechaNacimiento.getDate() == null) {
-
-                javax.swing.JOptionPane.showMessageDialog(this,
-                        "Por favor, complete todos los campos obligatorios",
-                        "Error de Validación",
-                        javax.swing.JOptionPane.ERROR_MESSAGE);
+            if (!UIUtils.validarCamposObligatorios(tfNombre, tfApellidos, tfCorreo,
+                    tfPais, tfProfesion, dcFechaNacimiento)) {
                 return;
             }
 
-            Nombre = tfNombre.getText();
-            Apellidos = tfApellidos.getText();
-            Correo = tfCorreo.getText();
-            Pais = tfPais.getText();
-            Profesion = tfProfesion.getText();
-            fechaNacimiento = dcFechaNacimiento.getDate();
+            Persona persona = new Persona();
+            persona.setNombre(tfNombre.getText().trim());
+            persona.setApellidos(tfApellidos.getText().trim());
+            persona.setCorreo(tfCorreo.getText().trim());
+            persona.setPais(tfPais.getText().trim());
+            persona.setProfesion(tfProfesion.getText().trim());
+            persona.setFechaNacimiento(dcFechaNacimiento.getDate());
+            persona.setRol(new BigInteger(String.valueOf(cbRol.getSelectedIndex() + 1)));
 
-            Persona registrarPersona = new Persona();
-            PersonaController nuevaPersona = new PersonaController();
-
-            switch (cbRol.getSelectedIndex()) {
-                case 0 ->
-                    Rol = new BigInteger("1");
-                case 1 ->
-                    Rol = new BigInteger("2");
-                case 2 ->
-                    Rol = new BigInteger("3");
-                case 3 ->
-                    Rol = new BigInteger("4");
-                case 4 ->
-                    Rol = new BigInteger("5");
-                default ->
-                    Rol = new BigInteger("2");
+            if (!persona.validarDatos()) {
+                UIUtils.mostrarMensaje(
+                        "Error en los datos de la persona",
+                        "Error de Validación",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
             }
 
-            registrarPersona.setNombre(Nombre);
-            registrarPersona.setApellidos(Apellidos);
-            registrarPersona.setCorreo(Correo);
-            registrarPersona.setPais(Pais);
-            registrarPersona.setProfesion(Profesion);
-            registrarPersona.setRol(Rol);
-            registrarPersona.setFechaNacimiento(fechaNacimiento);
-
-            boolean resultado;
-            resultado = nuevaPersona.creacion(registrarPersona);
+            PersonaController controlador = new PersonaController();
+            boolean resultado = controlador.creacion(persona);
 
             if (resultado) {
-                javax.swing.JOptionPane.showMessageDialog(this,
+                UIUtils.mostrarMensaje(
                         "Persona registrada exitosamente",
                         "Éxito",
-                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                limpiarDatos();
+                        JOptionPane.INFORMATION_MESSAGE);
+                UIUtils.limpiarCampos(tfNombre, tfApellidos, tfCorreo, tfPais,
+                        tfProfesion, dcFechaNacimiento, cbRol, tfBuscarPersona);
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this,
+                UIUtils.mostrarMensaje(
                         "Error al registrar la persona",
                         "Error",
-                        javax.swing.JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this,
+            UIUtils.mostrarMensaje(
                     "Error: " + e.getMessage(),
                     "Error del Sistema",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -383,40 +366,52 @@ public class Personas extends javax.swing.JFrame {
     }// GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {
-        PersonaController controladorBuscar = new PersonaController();
-
         tfBuscarPersona.setEditable(false);
         String idPersona = tfBuscarPersona.getText();
 
-        if (validarIngresado()) {
-            Persona personaEncontrada = controladorBuscar.lectura(new BigInteger(idPersona));
-
-            if (personaEncontrada != null) {
-                tfNombre.setText(personaEncontrada.getNombre());
-                tfApellidos.setText(personaEncontrada.getApellidos());
-                tfCorreo.setText(personaEncontrada.getCorreo());
-                tfPais.setText(personaEncontrada.getPais());
-                tfProfesion.setText(personaEncontrada.getProfesion());
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(personaEncontrada.getFechaNacimiento());
-                dcFechaNacimiento.setCalendar(cal);
-                cbRol.setSelectedIndex(personaEncontrada.getRol().intValue() - 1);
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontró ninguna persona con el ID: " + idPersona,
-                        "Error al buscar", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Debe ingresar el id de la persona a buscar",
-                    "Error al tratar de buscar", JOptionPane.ERROR_MESSAGE);
+        if (!UIUtils.validarId(tfBuscarPersona)) {
             tfBuscarPersona.setEditable(true);
+            return;
         }
+
+        PersonaController controlador = new PersonaController();
+        Persona personaEncontrada = controlador.lectura(new BigInteger(idPersona));
+
+        if (personaEncontrada != null) {
+            UIUtils.mostrarPersonaEncontrada(personaEncontrada, tfNombre, tfApellidos,
+                    tfCorreo, tfPais, tfProfesion, dcFechaNacimiento, cbRol);
+        } else {
+            UIUtils.mostrarMensaje(
+                    "No se encontró ninguna persona con el ID: " + idPersona,
+                    "Error al buscar",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private boolean validarCamposObligatorios() {
+        if (tfNombre.getText().trim().isEmpty()
+                || tfApellidos.getText().trim().isEmpty()
+                || tfCorreo.getText().trim().isEmpty()
+                || tfPais.getText().trim().isEmpty()
+                || tfProfesion.getText().trim().isEmpty()
+                || dcFechaNacimiento.getDate() == null) {
+
+            JOptionPane.showMessageDialog(this,
+                    "Por favor, complete todos los campos obligatorios",
+                    "Error de Validación",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
 
     private boolean validarIngresado() {
         String idPersona = tfBuscarPersona.getText().trim();
 
         if (idPersona.equals("") || idPersona.equals(0)) {
-            JOptionPane.showMessageDialog(null, "Error al tratar de capturar un ID", "Debes ingresar un ID válido",
+            new PersonaController().mostrarMensaje(
+                    "Error al tratar de capturar un ID",
+                    "Debes ingresar un ID válido",
                     JOptionPane.ERROR_MESSAGE);
             limpiarDatos();
             return false;
@@ -427,17 +422,13 @@ public class Personas extends javax.swing.JFrame {
     }
 
     private void limpiarDatos() {
-
         tfNombre.setText("");
         tfApellidos.setText("");
         tfCorreo.setText("");
         tfPais.setText("");
         tfProfesion.setText("");
-
         dcFechaNacimiento.setCalendar(null);
-
         cbRol.setSelectedIndex(0);
-
         tfBuscarPersona.setEditable(true);
         tfBuscarPersona.setText("");
     }
