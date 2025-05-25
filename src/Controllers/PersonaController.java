@@ -11,7 +11,10 @@ import Models.Persona;
 
 import java.math.BigInteger;
 import javax.swing.JOptionPane;
+
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -57,9 +60,39 @@ public class PersonaController implements IGestorDatos<Persona> {
 
     @Override
     public Persona lectura(BigInteger id) {
+        Persona persona = new Persona();
 
-        return null;
+        try {
+            conNewAdmin.conectar();
 
+            String sql = "SELECT nombre, apellidos, correo, fecha_nacimiento, pais, profesion, id_rol FROM personas WHERE id = ?";
+            PreparedStatement st = conNewAdmin.getConexion().prepareStatement(sql);
+            st.setLong(1, id.longValue());
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                persona.setNombre(rs.getString("nombre"));
+                persona.setApellidos(rs.getString("apellidos"));
+                persona.setCorreo(rs.getString("correo"));
+                persona.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+                persona.setPais(rs.getString("pais"));
+                persona.setProfesion(rs.getString("profesion"));
+                persona.setRol(BigInteger.valueOf(rs.getInt("id_rol")));
+            } else {
+                persona = new Persona();
+                JOptionPane.showMessageDialog(null, "No se encontró ninguna persona con el ID: " + id,
+                        "Error al buscar", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al leer una persona", "Error al leer",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return null;
+        } finally {
+            conNewAdmin.desconectar();
+        }
+
+        return persona;
     }
 
     @Override
