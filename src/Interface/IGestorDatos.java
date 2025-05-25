@@ -13,7 +13,7 @@ import java.math.BigInteger;
  */
 public interface IGestorDatos<T> {
 
-    void creacion(T Objeto);
+    boolean creacion(T Objeto);
 
     T lectura(BigInteger id);
 

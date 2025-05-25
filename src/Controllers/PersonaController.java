@@ -5,11 +5,13 @@
 package Controllers;
 
 import Config.ConexionLocal;
+
 import Interface.IGestorDatos;
 import Models.Persona;
-import com.mysql.cj.jdbc.ConnectionGroup;
 
 import java.math.BigInteger;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -17,14 +19,39 @@ import java.math.BigInteger;
  */
 public class PersonaController implements IGestorDatos<Persona> {
 
-    private ConnectionGroup conexion;
     private final ConexionLocal conNewAdmin = new ConexionLocal();
 
     @Override
-    public void creacion(Persona Objeto) {
+    public boolean creacion(Persona objeto) {
         try {
             conNewAdmin.conectar();
+            String sql = "INSERT INTO personas (nombre,apellidos,correo,fecha_nacimiento,pais,profesion,id_rol)"
+                    + "VALUES(?,?,?,?,?,?,?)";
+            PreparedStatement st = conNewAdmin.getConexion().prepareStatement(sql);
+            st.setString(1, objeto.getNombre());
+            st.setString(2, objeto.getApellidos());
+            st.setString(3, objeto.getCorreo());
+            // Formatear fecha
+            java.sql.Date fechaNacimiento = new java.sql.Date(objeto.getFechaNacimiento().getTime());
+            // pasar fecha
+            st.setDate(4, fechaNacimiento);
+            st.setString(5, objeto.getPais());
+            st.setString(6, objeto.getProfesion());
+            st.setLong(7, objeto.getRol().longValue());
+
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha realizado un nuevo registro.", "Datos Guardados",
+                    JOptionPane.INFORMATION_MESSAGE);
+            return true;
+
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al crear una nueva persona", "Error al crear",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return false;
+
+        } finally {
+            conNewAdmin.desconectar();
         }
     }
 
