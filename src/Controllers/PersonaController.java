@@ -181,7 +181,7 @@ public class PersonaController implements IGestorDatos<Persona> {
     public boolean validarIngresado(JTextField tfBuscarPersona) {
         String idPersona = tfBuscarPersona.getText().trim();
 
-        if (idPersona.equals("") || idPersona.equals(0)) {
+        if (idPersona.isEmpty() || idPersona.equals("0")) {
             mostrarMensaje(
                     "Error al tratar de capturar un ID",
                     "Debes ingresar un ID válido",

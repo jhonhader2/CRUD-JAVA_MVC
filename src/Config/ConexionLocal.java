@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-// CRUD Desarrollado por Deyson
+// CRUD Desarrollado por Hader
 /**
  * La clase ConexionLocal representa una conexión local a una base de datos
  * MySQL.
@@ -16,9 +16,22 @@ import javax.swing.JOptionPane;
  */
 public class ConexionLocal implements IGestorConexion {
 
-    private String url = "jdbc:mysql://localhost/crud_java_mvc?useSSL=false&serverTimezone=UTC";
-    private String usuario = "root";
-    private String clave = "";
+    // Parámetros de conexión
+    private static final String HOST = "localhost";
+    private static final String DATABASE = "crud_java_mvc";
+    private static final String TIMEZONE = "America/Bogota";
+    private static final String USE_SSL = "false";
+
+    // Credenciales
+    private static final String USUARIO = "root";
+    private static final String CLAVE = "";
+
+    // URL de conexión construida con los parámetros
+    private String url = String.format("jdbc:mysql://%s/%s?useSSL=%s&serverTimezone=%s",
+            HOST, DATABASE, USE_SSL, TIMEZONE);
+
+    private String usuario = USUARIO;
+    private String clave = CLAVE;
 
     // Instancia de la clase Connection del sistema
     private Connection conexion;
