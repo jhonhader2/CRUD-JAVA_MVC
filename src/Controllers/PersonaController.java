@@ -33,7 +33,7 @@ public class PersonaController implements IGestorDatos<Persona> {
     public boolean creacion(Persona objeto) {
         try {
             conNewAdmin.conectar();
-            String sql = "INSERT INTO personas (nombre,apellidos,correo,fecha_nacimiento,pais,profesion,id_rol)"
+            String sql = "INSERT INTO personas (nombre,apellidos,correo,fecha_nacimiento,pais,profesion,rol_id)"
                     + "VALUES(?,?,?,?,?,?,?)";
             PreparedStatement st = conNewAdmin.getConexion().prepareStatement(sql);
             st.setString(1, objeto.getNombre());
@@ -68,7 +68,7 @@ public class PersonaController implements IGestorDatos<Persona> {
         try {
             conNewAdmin.conectar();
 
-            String sql = "SELECT nombre, apellidos, correo, fecha_nacimiento, pais, profesion, id_rol FROM personas WHERE id = ?";
+            String sql = "SELECT nombre, apellidos, correo, fecha_nacimiento, pais, profesion, rol_id FROM personas WHERE id = ?";
             PreparedStatement st = conNewAdmin.getConexion().prepareStatement(sql);
             st.setLong(1, id.longValue());
             ResultSet rs = st.executeQuery();

@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jhonh/OneDrive/Documentos/NetBeansProjects/CRUD-JAVA_MVC/src/Config/ConexionLocal.java</file>
-            <file>file:/C:/Users/jhonh/OneDrive/Documentos/NetBeansProjects/CRUD-JAVA_MVC/src/Interface/IGestorConexion.java</file>
+            <file>file:/C:/Users/jhonh/OneDrive/Documentos/NetBeansProjects/CRUD-JAVA_MVC/src/Views/Personas.java</file>
+            <file>file:/C:/Users/jhonh/OneDrive/Documentos/NetBeansProjects/CRUD-JAVA_MVC/src/Utils/UIUtils.java</file>
+            <file>file:/C:/Users/jhonh/OneDrive/Documentos/NetBeansProjects/CRUD-JAVA_MVC/src/Views/Roles.java</file>
+            <file>file:/C:/Users/jhonh/OneDrive/Documentos/NetBeansProjects/CRUD-JAVA_MVC/src/Models/Persona.java</file>
+            <file>file:/C:/Users/jhonh/OneDrive/Documentos/NetBeansProjects/CRUD-JAVA_MVC/src/Controllers/PersonaController.java</file>
         </group>
     </open-files>
 </project-private>
